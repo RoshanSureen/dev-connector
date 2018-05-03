@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^5.0.1",
     "express": "~4.15.5",
+    "gravatar": "^1.6.0",
     "hjs": "~0.0.6",
     "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.17",
