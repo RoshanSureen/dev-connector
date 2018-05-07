@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser, clearCurrentProfile } from "../../actions";
 import { AuthToken } from "../../utils";
 import { Navbar, Register, Login, Dashboard } from "../containers";
 import { Footer, Landing } from "../view";
+import { PrivateRoute } from "../commons";
 
-class App extends Component {
+class Home extends Component {
   componentWillMount() {
     if (localStorage.jwtToken) {
       // Set auth token header auth
@@ -41,7 +42,9 @@ class App extends Component {
           <div className="container">
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
           </div>
           <Footer />
         </div>
@@ -58,4 +61,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, dispatchToProps)(App);
+export default connect(null, dispatchToProps)(Home);
