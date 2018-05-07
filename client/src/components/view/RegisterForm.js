@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classnames from "classnames";
+import { TextFieldGroup } from "./commons";
 
 class RegisterForm extends Component {
   constructor() {
@@ -35,71 +35,38 @@ class RegisterForm extends Component {
                 Create your DevConnector account
               </p>
               <form noValidate action="create-profile.html">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.name
-                    })}
-                    placeholder="Name"
-                    id="name"
-                    value={this.state.registration.name}
-                    onChange={this.updateItem.bind(this)}
-                    required
-                  />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.email
-                    })}
-                    placeholder="Email Address"
-                    id="email"
-                    value={this.state.registration.email}
-                    onChange={this.updateItem.bind(this)}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                  <small className="form-text text-muted">
-                    This site uses Gravatar so if you want a profile image, use
-                    a Gravatar email
-                  </small>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password
-                    })}
-                    placeholder="Password"
-                    id="password"
-                    value={this.state.registration.password}
-                    onChange={this.updateItem.bind(this)}
-                  />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password2
-                    })}
-                    placeholder="Confirm Password"
-                    id="password2"
-                    value={this.state.registration.password2}
-                    onChange={this.updateItem.bind(this)}
-                  />
-                  {errors.password2 && (
-                    <div className="invalid-feedback">{errors.password2}</div>
-                  )}
-                </div>
+                <TextFieldGroup
+                  error={errors.name}
+                  placeholder="Name"
+                  id="name"
+                  value={this.state.registration.name}
+                  onChange={this.updateItem.bind(this)}
+                />
+
+                <TextFieldGroup
+                  error={errors.email}
+                  placeholder="Email"
+                  id="email"
+                  value={this.state.registration.email}
+                  onChange={this.updateItem.bind(this)}
+                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
+                />
+                <TextFieldGroup
+                  type="password"
+                  error={errors.password}
+                  placeholder="Password"
+                  id="password"
+                  value={this.state.registration.password}
+                  onChange={this.updateItem.bind(this)}
+                />
+                <TextFieldGroup
+                  type="password"
+                  error={errors.password2}
+                  placeholder="Confirm Password"
+                  id="password2"
+                  value={this.state.registration.password2}
+                  onChange={this.updateItem.bind(this)}
+                />
                 <input
                   onClick={this.submitItem.bind(this)}
                   type="submit"

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classnames from "classnames";
+import { TextFieldGroup } from "./commons";
 
 class LoginForm extends Component {
   constructor() {
@@ -34,36 +34,22 @@ class LoginForm extends Component {
                 Sign in to your DevConnector account
               </p>
               <form action="dashboard.html">
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.email
-                    })}
-                    placeholder="Email Address"
-                    id="email"
-                    value={this.state.login.email}
-                    onChange={this.updateItem.bind(this)}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.password
-                    })}
-                    placeholder="Password"
-                    id="password"
-                    value={this.state.login.password}
-                    onChange={this.updateItem.bind(this)}
-                  />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
+                <TextFieldGroup
+                  type="email"
+                  error={errors.email}
+                  placeholder="Email Address"
+                  id="email"
+                  value={this.state.login.email}
+                  onChange={this.updateItem.bind(this)}
+                />
+                <TextFieldGroup
+                  type="password"
+                  error={errors.password}
+                  placeholder="Password"
+                  id="password"
+                  value={this.state.login.password}
+                  onChange={this.updateItem.bind(this)}
+                />
                 <input
                   onClick={this.submitItem.bind(this)}
                   type="submit"

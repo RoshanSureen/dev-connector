@@ -2,6 +2,10 @@ import constants from "../constants";
 import jwt_decode from "jwt-decode";
 import { APIManager, AuthToken } from "../utils";
 
+// ================================================================================================
+// Auth Action Creators
+// ================================================================================================
+
 export const registerUser = (params, history) => dispatch => {
   APIManager.post("/user/register", params)
     .then(result => {
@@ -43,5 +47,49 @@ export const setCurrentUser = params => {
   return {
     type: constants.SET_CURRENT_USER,
     data: params
+  };
+};
+
+export const logoutUser = params => dispatch => {
+  // Remove token from localStorage
+  localStorage.removeItem("jwtToken");
+
+  // Remove auth header for future requests
+  AuthToken.setAuthToken(false);
+
+  // Set current user to null and isAuthenticated to false
+  dispatch(setCurrentUser(params));
+};
+
+// ================================================================================================
+// Profile Action Creators
+// ================================================================================================
+
+export const getCurrentProfile = params => dispatch => {
+  dispatch(setProfileLoading(params));
+  APIManager.get("/profile/current")
+    .then(result => {
+      dispatch({
+        type: constants.GET_PROFILE,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_PROFILE,
+        data: {}
+      });
+    });
+};
+
+export const setProfileLoading = params => {
+  return {
+    type: constants.PROFILE_LOADING
+  };
+};
+
+export const clearCurrentProfile = params => {
+  return {
+    type: constants.CLEAR_CURRENT_PROFILE
   };
 };

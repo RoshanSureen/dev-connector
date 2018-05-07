@@ -17,5 +17,21 @@ export default {
           reject(err);
         });
     });
+  },
+  get: url => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(url)
+        .then(response => {
+          if (response.data.confirmation !== "success") {
+            reject(response);
+            return;
+          }
+          resolve(response);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 };
