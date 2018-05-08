@@ -93,3 +93,17 @@ export const clearCurrentProfile = params => {
     type: constants.CLEAR_CURRENT_PROFILE
   };
 };
+
+export const createProfile = (params, history) => dispatch => {
+  APIManager.post("/profile/save", params)
+    .then(result => {
+      history.push("/dashboard");
+      return;
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};

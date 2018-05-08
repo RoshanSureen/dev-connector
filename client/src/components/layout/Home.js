@@ -4,7 +4,13 @@ import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser, clearCurrentProfile } from "../../actions";
 import { AuthToken } from "../../utils";
-import { Navbar, Register, Login, Dashboard } from "../containers";
+import {
+  Navbar,
+  Register,
+  Login,
+  Dashboard,
+  CreateProfile
+} from "../containers";
 import { Footer, Landing } from "../view";
 import { PrivateRoute } from "../commons";
 
@@ -44,6 +50,13 @@ class Home extends Component {
             <Route exact path="/login" component={Login} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
             </Switch>
           </div>
           <Footer />

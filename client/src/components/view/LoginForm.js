@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TextFieldGroup } from "./commons";
+import { TextFieldGroup } from "../commons";
 
 class LoginForm extends Component {
   constructor() {
