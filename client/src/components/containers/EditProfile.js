@@ -3,30 +3,38 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Profile } from "../view";
-import { createProfile } from "../../actions";
+import { createProfile, getCurrentProfile } from "../../actions";
 
-class CreateProfile extends Component {
+class EditProfile extends Component {
   constructor() {
     super();
     this.state = {
+      profile: {},
       errors: {}
     };
+  }
+  componentDidMount() {
+    this.props.getCurrentProfile(null);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.err.errors) {
       this.setState({ errors: nextProps.err.errors });
     }
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+      this.setState({ profile });
+    }
   }
   onSubmit(profile_data) {
-    // console.log("create profile: " + JSON.stringify(profile_data));
     this.props.createProfile(profile_data, this.props.history);
   }
   render() {
-    const title = "Create Your Profile";
+    const title = "Edit Your Profile";
     const subTitle =
-      "Let's get some information to make your profile stand out";
+      "Update or Add new information to make your profile stand out";
     return (
       <Profile
+        profile={this.state.profile}
         title={title}
         subTitle={subTitle}
         submit={this.onSubmit.bind(this)}
@@ -36,9 +44,11 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  err: PropTypes.object.isRequired
+  err: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const stateToProps = state => {
@@ -50,10 +60,10 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    createProfile: (params, history) => dispatch(createProfile(params, history))
+    createProfile: (params, history) =>
+      dispatch(createProfile(params, history)),
+    getCurrentProfile: params => dispatch(getCurrentProfile(params))
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(
-  withRouter(CreateProfile)
-);
+export default connect(stateToProps, dispatchToProps)(withRouter(EditProfile));

@@ -5,6 +5,7 @@ import {
   SelectListGroup,
   TextAreaFieldGroup
 } from "../commons";
+import isEmpty from "../../validation/is-empty";
 
 class Profile extends Component {
   constructor() {
@@ -28,6 +29,70 @@ class Profile extends Component {
       }
     };
   }
+  componentWillReceiveProps(nextProps) {
+    if (!isEmpty.isEmpty(nextProps.profile)) {
+      const profile = nextProps.profile;
+
+      // Check each field and if it does not exist, make empty string
+      profile.handle = profile.result.handle;
+      profile.company = !isEmpty.isEmpty(nextProps.profile.result.company)
+        ? nextProps.profile.result.company
+        : "";
+
+      profile.website = !isEmpty.isEmpty(nextProps.profile.result.website)
+        ? nextProps.profile.result.website
+        : "";
+      profile.location = !isEmpty.isEmpty(nextProps.profile.result.location)
+        ? nextProps.profile.result.location
+        : "";
+
+      profile.status = profile.result.status;
+
+      // Bring skills array back to comma spereated values
+      profile.skills = profile.result.skills.join(",");
+
+      profile.githubusername = !isEmpty.isEmpty(
+        nextProps.profile.result.githubusername
+      )
+        ? nextProps.profile.result.githubusername
+        : "";
+      profile.bio = !isEmpty.isEmpty(nextProps.profile.result.bio)
+        ? nextProps.profile.result.bio
+        : "";
+      profile.social = !isEmpty.isEmpty(nextProps.profile.result.social)
+        ? nextProps.profile.result.social
+        : {};
+
+      // Check social field and if it does not exist make an empty string
+      profile.twitter = !isEmpty.isEmpty(
+        nextProps.profile.result.social.twitter
+      )
+        ? nextProps.profile.result.social.twitter
+        : "";
+      profile.facebook = !isEmpty.isEmpty(
+        nextProps.profile.result.social.facebook
+      )
+        ? nextProps.profile.result.social.facebook
+        : "";
+      profile.youtube = !isEmpty.isEmpty(
+        nextProps.profile.result.social.youtube
+      )
+        ? nextProps.profile.result.social.youtube
+        : "";
+      profile.linkedin = !isEmpty.isEmpty(
+        nextProps.profile.result.social.linkedin
+      )
+        ? nextProps.profile.result.social.linkedin
+        : "";
+      profile.instagram = !isEmpty.isEmpty(
+        nextProps.profile.result.social.instagram
+      )
+        ? nextProps.profile.result.social.instagram
+        : "";
+
+      this.setState({ basic_profile: profile });
+    }
+  }
   updateItem(event) {
     event.preventDefault();
     let updated = Object.assign({}, this.state.basic_profile);
@@ -39,7 +104,7 @@ class Profile extends Component {
     this.props.submit(this.state.basic_profile);
   }
   render() {
-    const { errors } = this.props;
+    const { errors, title, subTitle } = this.props;
     const { displaySocialInputs } = this.state;
     let socialInputs;
 
@@ -106,10 +171,8 @@ class Profile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center">
-                Let's get some information to make you profile stand out
-              </p>
+              <h1 className="display-4 text-center">{title}</h1>
+              <p className="lead text-center">{subTitle}</p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.submitItem.bind(this)}>
                 <TextFieldGroup
