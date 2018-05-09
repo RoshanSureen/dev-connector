@@ -107,3 +107,20 @@ export const createProfile = (params, history) => dispatch => {
       });
     });
 };
+
+export const deleteAccount = params => dispatch => {
+  if (window.confirm("Are you sure? This cannot be undone!"));
+  APIManager.delete("/profile/delete")
+    .then(result => {
+      dispatch({
+        type: constants.SET_CURRENT_USER,
+        data: params
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};

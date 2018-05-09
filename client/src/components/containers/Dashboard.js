@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions";
+import { getCurrentProfile, deleteAccount } from "../../actions";
 import { Spinner } from "../commons";
+import { DashboardActions } from "../view";
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile(null);
+  }
+  onDeleteClick(event) {
+    event.preventDefault();
+    this.props.deleteAccount({});
   }
   render() {
     const { user } = this.props.auth;
@@ -20,7 +25,23 @@ class Dashboard extends Component {
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <h4>TODO: DSIPLAY PROFILE</h4>;
+        dashboardContent = (
+          <div>
+            <p className="lead text-muted">
+              Welcome{" "}
+              <Link to={`/profile/${profile.result.handle}`}>{user.name}</Link>
+            </p>
+            <DashboardActions />
+            {/* TODO: Experience and education */}
+            <div style={{ marginBottom: "60px" }} />
+            <button
+              onClick={this.onDeleteClick.bind(this)}
+              className="btn btn-danger"
+            >
+              Delete My Account
+            </button>
+          </div>
+        );
       } else {
         // user is logged but has no profile
         dashboardContent = (
@@ -59,12 +80,15 @@ Dashboard.propTypes = {
 const statetToProps = state => {
   return {
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    getCurrentProfile: PropTypes.func.isRequired,
+    deleteAccount: PropTypes.func.isRequired
   };
 };
 const dispatchToProps = dispatch => {
   return {
-    getCurrentProfile: params => dispatch(getCurrentProfile(params))
+    getCurrentProfile: params => dispatch(getCurrentProfile(params)),
+    deleteAccount: params => dispatch(deleteAccount(params))
   };
 };
 
