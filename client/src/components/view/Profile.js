@@ -12,7 +12,6 @@ class Profile extends Component {
     super();
     this.state = {
       basic_profile: {
-        displaySocialInputs: false,
         handle: "",
         company: "",
         website: "",
@@ -26,7 +25,8 @@ class Profile extends Component {
         youtube: "",
         instagram: "",
         linkedin: ""
-      }
+      },
+      displaySocialInputs: false,
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -96,7 +96,7 @@ class Profile extends Component {
   updateItem(event) {
     event.preventDefault();
     let updated = Object.assign({}, this.state.basic_profile);
-    updated[event.target.id] = event.target.value;
+    updated[event.target.name] = event.target.value;
     this.setState({ basic_profile: updated });
   }
   submitItem(event) {
@@ -113,7 +113,7 @@ class Profile extends Component {
         <div>
           <InputGroup
             placeholder="Twitter Profile URL"
-            id="twitter"
+            name="twitter"
             icon="fab fa-twitter"
             value={this.state.basic_profile.twitter}
             onChange={this.updateItem.bind(this)}
@@ -121,7 +121,7 @@ class Profile extends Component {
           />
           <InputGroup
             placeholder="Facebook Profile URL"
-            id="facebook"
+            name="facebook"
             icon="fab fa-facebook"
             value={this.state.basic_profile.facebook}
             onChange={this.updateItem.bind(this)}
@@ -129,7 +129,7 @@ class Profile extends Component {
           />
           <InputGroup
             placeholder="Linkedin Profile URL"
-            id="linkedin"
+            name="linkedin"
             icon="fab fa-linkedin"
             value={this.state.basic_profile.linkedin}
             onChange={this.updateItem.bind(this)}
@@ -137,7 +137,7 @@ class Profile extends Component {
           />
           <InputGroup
             placeholder="Youtube Profile URL"
-            id="youtube"
+            name="youtube"
             icon="fab fa-youtube"
             value={this.state.basic_profile.youtube}
             onChange={this.updateItem.bind(this)}
@@ -145,7 +145,7 @@ class Profile extends Component {
           />
           <InputGroup
             placeholder="Instagram Profile URL"
-            id="instagram"
+            name="instagram"
             icon="fab fa-instagram"
             value={this.state.basic_profile.instagram}
             onChange={this.updateItem.bind(this)}
@@ -156,7 +156,7 @@ class Profile extends Component {
     }
     // Select options for status
     const options = [
-      { label: "* Select Professional Status", value: 0 },
+      // { label: "* Select Professional Status", value: 0 },
       { label: "Developer", value: "Developer" },
       { label: "Junior Developer", value: "Junior Developer" },
       { label: "Senior Developer", value: "Senior Developer" },
@@ -177,7 +177,7 @@ class Profile extends Component {
               <form onSubmit={this.submitItem.bind(this)}>
                 <TextFieldGroup
                   placeholder="* Profile Handle"
-                  id="handle"
+                  name="handle"
                   value={this.state.basic_profile.handle}
                   onChange={this.updateItem.bind(this)}
                   error={errors.handle}
@@ -185,7 +185,7 @@ class Profile extends Component {
                 />
                 <SelectListGroup
                   placeholder="* Status"
-                  id="status"
+                  name="status"
                   value={this.state.basic_profile.status}
                   onChange={this.updateItem.bind(this)}
                   error={errors.status}
@@ -194,7 +194,7 @@ class Profile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Company"
-                  id="company"
+                  name="company"
                   value={this.state.basic_profile.company}
                   onChange={this.updateItem.bind(this)}
                   error={errors.company}
@@ -202,7 +202,7 @@ class Profile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Website"
-                  id="website"
+                  name="website"
                   value={this.state.basic_profile.website}
                   onChange={this.updateItem.bind(this)}
                   error={errors.website}
@@ -210,7 +210,7 @@ class Profile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Location"
-                  id="location"
+                  name="location"
                   value={this.state.basic_profile.location}
                   onChange={this.updateItem.bind(this)}
                   error={errors.location}
@@ -218,7 +218,7 @@ class Profile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="* Skills"
-                  id="skills"
+                  name="skills"
                   value={this.state.basic_profile.skills}
                   onChange={this.updateItem.bind(this)}
                   error={errors.skills}
@@ -226,7 +226,7 @@ class Profile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Github Username"
-                  id="githubusername"
+                  name="githubusername"
                   value={this.state.basic_profile.githubusername}
                   onChange={this.updateItem.bind(this)}
                   error={errors.githubusername}
@@ -234,7 +234,7 @@ class Profile extends Component {
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
-                  id="bio"
+                  name="bio"
                   value={this.state.basic_profile.bio}
                   onChange={this.updateItem.bind(this)}
                   error={errors.bio}

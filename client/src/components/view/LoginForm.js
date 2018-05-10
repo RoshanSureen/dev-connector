@@ -8,14 +8,13 @@ class LoginForm extends Component {
       login: {
         email: "",
         password: ""
-      },
-      errors: {}
+      }
     };
   }
   updateItem(event) {
     event.preventDefault();
     let updated = Object.assign({}, this.state.login);
-    updated[event.target.id] = event.target.value;
+    updated[event.target.name] = event.target.value;
     this.setState({ login: updated });
   }
   submitItem(event) {
@@ -38,7 +37,7 @@ class LoginForm extends Component {
                   type="email"
                   error={errors.email}
                   placeholder="Email Address"
-                  id="email"
+                  name="email"
                   value={this.state.login.email}
                   onChange={this.updateItem.bind(this)}
                 />
@@ -46,7 +45,7 @@ class LoginForm extends Component {
                   type="password"
                   error={errors.password}
                   placeholder="Password"
-                  id="password"
+                  name="password"
                   value={this.state.login.password}
                   onChange={this.updateItem.bind(this)}
                 />

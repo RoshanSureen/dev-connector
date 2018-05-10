@@ -5,6 +5,8 @@ import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import Profile from "./Profile";
 import DashboardActions from "./DashboardActions";
+import ExperienceForm from "./ExperienceForm";
+import EducationForm from "./EducationForm";
 
 export {
   Nav,
@@ -13,5 +15,7 @@ export {
   RegisterForm,
   LoginForm,
   Profile,
-  DashboardActions
+  DashboardActions,
+  ExperienceForm,
+  EducationForm
 };

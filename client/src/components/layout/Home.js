@@ -10,7 +10,9 @@ import {
   Login,
   Dashboard,
   CreateProfile,
-  EditProfile
+  EditProfile,
+  Experience,
+  Education
 } from "../containers";
 import { Footer, Landing } from "../view";
 import { PrivateRoute } from "../commons";
@@ -64,6 +66,20 @@ class Home extends Component {
                 exact
                 path="/edit-profile"
                 component={EditProfile}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/add-experience"
+                component={Experience}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/add-education"
+                component={Education}
               />
             </Switch>
           </div>

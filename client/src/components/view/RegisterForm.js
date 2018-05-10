@@ -16,7 +16,7 @@ class RegisterForm extends Component {
   updateItem(event) {
     event.preventDefault();
     let updated = Object.assign({}, this.state.registration);
-    updated[event.target.id] = event.target.value;
+    updated[event.target.name] = event.target.value;
     this.setState({ registration: updated });
   }
   submitItem(event) {
@@ -38,7 +38,7 @@ class RegisterForm extends Component {
                 <TextFieldGroup
                   error={errors.name}
                   placeholder="Name"
-                  id="name"
+                  name="name"
                   value={this.state.registration.name}
                   onChange={this.updateItem.bind(this)}
                 />
@@ -46,7 +46,7 @@ class RegisterForm extends Component {
                 <TextFieldGroup
                   error={errors.email}
                   placeholder="Email"
-                  id="email"
+                  name="email"
                   value={this.state.registration.email}
                   onChange={this.updateItem.bind(this)}
                   info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
@@ -55,7 +55,7 @@ class RegisterForm extends Component {
                   type="password"
                   error={errors.password}
                   placeholder="Password"
-                  id="password"
+                  name="password"
                   value={this.state.registration.password}
                   onChange={this.updateItem.bind(this)}
                 />
@@ -63,7 +63,7 @@ class RegisterForm extends Component {
                   type="password"
                   error={errors.password2}
                   placeholder="Confirm Password"
-                  id="password2"
+                  name="password2"
                   value={this.state.registration.password2}
                   onChange={this.updateItem.bind(this)}
                 />

@@ -124,3 +124,29 @@ export const deleteAccount = params => dispatch => {
       });
     });
 };
+
+export const addExperience = (params, history) => dispatch => {
+  APIManager.post("/profile/experience", params)
+    .then(result => {
+      history.push("/dashboard");
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};
+
+export const addEducation = (params, history) => dispatch => {
+  APIManager.post("/profile/education", params)
+    .then(result => {
+      history.push("/dashboard");
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};

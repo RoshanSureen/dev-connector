@@ -3,7 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 
 const InputGroup = ({
-  id,
+  name,
   placeholder,
   value,
   error,
@@ -23,7 +23,7 @@ const InputGroup = ({
           "is-invalid": error
         })}
         placeholder={placeholder}
-        id={id}
+        name={name}
         value={value}
         onChange={onChange}
       />
@@ -33,7 +33,7 @@ const InputGroup = ({
 };
 
 InputGroup.propTypes = {
-  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,
