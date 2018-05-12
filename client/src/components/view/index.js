@@ -7,6 +7,8 @@ import Profile from "./Profile";
 import DashboardActions from "./DashboardActions";
 import ExperienceForm from "./ExperienceForm";
 import EducationForm from "./EducationForm";
+import ShowExperience from "./ShowExperience";
+import ShowEducation from "./ShowEducation";
 
 export {
   Nav,
@@ -17,5 +19,7 @@ export {
   Profile,
   DashboardActions,
   ExperienceForm,
-  EducationForm
+  EducationForm,
+  ShowExperience,
+  ShowEducation
 };

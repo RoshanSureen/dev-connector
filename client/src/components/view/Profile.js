@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   TextFieldGroup,
   InputGroup,
@@ -26,7 +27,7 @@ class Profile extends Component {
         instagram: "",
         linkedin: ""
       },
-      displaySocialInputs: false,
+      displaySocialInputs: false
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -171,6 +172,9 @@ class Profile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link to="/dashboard" className="btn btn-light">
+                Go Back
+              </Link>
               <h1 className="display-4 text-center">{title}</h1>
               <p className="lead text-center">{subTitle}</p>
               <small className="d-block pb-3">* = required fields</small>

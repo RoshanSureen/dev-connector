@@ -234,7 +234,7 @@ module.exports = {
           reject(errors);
           return;
         }
-        const removeIndex = profile[action].map(item => item._id).indexOf(id);
+        const removeIndex = profile[action].map(item => item.id).indexOf(id);
         profile[action].splice(removeIndex, 1);
         profile.save((err, profile) => {
           if (err) {

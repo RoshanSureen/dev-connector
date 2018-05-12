@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile, deleteAccount } from "../../actions";
+import {
+  getCurrentProfile,
+  deleteAccount,
+  deleteExp,
+  deleteEdu
+} from "../../actions";
 import { Spinner } from "../commons";
 import { DashboardActions } from "../view";
+import { ShowExperience, ShowEducation } from "../view";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -13,6 +19,12 @@ class Dashboard extends Component {
   onDeleteClick(event) {
     event.preventDefault();
     this.props.deleteAccount({});
+  }
+  deleteExperience(id) {
+    this.props.deleteExp(id);
+  }
+  deleteEducation(id) {
+    this.props.deleteEdu(id);
   }
   render() {
     const { user } = this.props.auth;
@@ -32,7 +44,14 @@ class Dashboard extends Component {
               <Link to={`/profile/${profile.result.handle}`}>{user.name}</Link>
             </p>
             <DashboardActions />
-            {/* TODO: Experience and education */}
+            <ShowExperience
+              delete={this.deleteExperience.bind(this)}
+              experience={profile.result.experience}
+            />
+            <ShowEducation
+              delete={this.deleteEducation.bind(this)}
+              education={profile.result.education}
+            />
             <div style={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
@@ -82,13 +101,17 @@ const statetToProps = state => {
     auth: state.auth,
     profile: state.profile,
     getCurrentProfile: PropTypes.func.isRequired,
-    deleteAccount: PropTypes.func.isRequired
+    deleteAccount: PropTypes.func.isRequired,
+    deleteExp: PropTypes.func.isRequired,
+    deleteEdu: PropTypes.func.isRequired
   };
 };
 const dispatchToProps = dispatch => {
   return {
     getCurrentProfile: params => dispatch(getCurrentProfile(params)),
-    deleteAccount: params => dispatch(deleteAccount(params))
+    deleteAccount: params => dispatch(deleteAccount(params)),
+    deleteExp: params => dispatch(deleteExp(params)),
+    deleteEdu: params => dispatch(deleteEdu(params))
   };
 };
 

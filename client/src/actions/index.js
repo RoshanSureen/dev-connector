@@ -109,20 +109,21 @@ export const createProfile = (params, history) => dispatch => {
 };
 
 export const deleteAccount = params => dispatch => {
-  if (window.confirm("Are you sure? This cannot be undone!"));
-  APIManager.delete("/profile/delete")
-    .then(result => {
-      dispatch({
-        type: constants.SET_CURRENT_USER,
-        data: params
+  if (window.confirm("Are you sure? This cannot be undone!")) {
+    APIManager.delete("/profile/delete")
+      .then(result => {
+        dispatch({
+          type: constants.SET_CURRENT_USER,
+          data: params
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: constants.GET_ERRORS,
+          error: err.response.data.message
+        });
       });
-    })
-    .catch(err => {
-      dispatch({
-        type: constants.GET_ERRORS,
-        error: err.response.data.message
-      });
-    });
+  }
 };
 
 export const addExperience = (params, history) => dispatch => {
@@ -142,6 +143,38 @@ export const addEducation = (params, history) => dispatch => {
   APIManager.post("/profile/education", params)
     .then(result => {
       history.push("/dashboard");
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};
+
+export const deleteExp = params => dispatch => {
+  APIManager.delete(`/profile/experience/${params}`)
+    .then(result => {
+      dispatch({
+        type: constants.GET_PROFILE,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};
+
+export const deleteEdu = params => dispatch => {
+  APIManager.delete(`/profile/education/${params}`)
+    .then(result => {
+      dispatch({
+        type: constants.GET_PROFILE,
+        data: result.data
+      });
     })
     .catch(err => {
       dispatch({
