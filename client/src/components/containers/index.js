@@ -6,6 +6,8 @@ import CreateProfile from "./CreateProfile";
 import EditProfile from "./EditProfile";
 import Experience from "./Experience";
 import Education from "./Education";
+import Profiles from "./Profiles";
+import Profile from "./Profile";
 
 export {
   Navbar,
@@ -15,5 +17,7 @@ export {
   CreateProfile,
   EditProfile,
   Experience,
-  Education
+  Education,
+  Profiles,
+  Profile
 };

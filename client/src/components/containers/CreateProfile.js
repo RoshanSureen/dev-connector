@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Profile } from "../view";
+import { SaveProfile } from "../view";
 import { createProfile } from "../../actions";
 
 class CreateProfile extends Component {
@@ -26,7 +26,7 @@ class CreateProfile extends Component {
     const subTitle =
       "Let's get some information to make your profile stand out";
     return (
-      <Profile
+      <SaveProfile
         title={title}
         subTitle={subTitle}
         submit={this.onSubmit.bind(this)}

@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import { authReducer, errorReducer, profileReducer } from "../reducers";
 
@@ -10,7 +10,14 @@ export default {
       errors: errorReducer,
       profile: profileReducer
     });
-    store = createStore(reducers, applyMiddleware(thunk));
+    store = createStore(
+      reducers,
+      compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+    );
     return store;
   },
 

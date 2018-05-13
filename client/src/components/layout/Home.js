@@ -12,7 +12,9 @@ import {
   CreateProfile,
   EditProfile,
   Experience,
-  Education
+  Education,
+  Profiles,
+  Profile
 } from "../containers";
 import { Footer, Landing } from "../view";
 import { PrivateRoute } from "../commons";
@@ -51,6 +53,8 @@ class Home extends Component {
           <div className="container">
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/profile/:handle" component={Profile} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
@@ -76,11 +80,7 @@ class Home extends Component {
               />
             </Switch>
             <Switch>
-              <PrivateRoute
-                exact
-                path="/add-education"
-                component={Education}
-              />
+              <PrivateRoute exact path="/add-education" component={Education} />
             </Switch>
           </div>
           <Footer />

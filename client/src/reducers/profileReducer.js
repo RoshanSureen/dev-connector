@@ -19,6 +19,11 @@ export default (state = initialState, action) => {
       updated["loading"] = false;
       return updated;
 
+    case constants.GET_PROFILES:
+      updated["profiles"] = action.data;
+      updated["loading"] = false;
+      return updated;
+
     case constants.CLEAR_CURRENT_PROFILE:
       updated["profile"] = null;
       return updated;

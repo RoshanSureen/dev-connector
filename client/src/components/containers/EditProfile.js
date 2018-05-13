@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Profile } from "../view";
+import { SaveProfile } from "../view";
 import { createProfile, getCurrentProfile } from "../../actions";
 
 class EditProfile extends Component {
@@ -33,7 +33,7 @@ class EditProfile extends Component {
     const subTitle =
       "Update or Add new information to make your profile stand out";
     return (
-      <Profile
+      <SaveProfile
         profile={this.state.profile}
         title={title}
         subTitle={subTitle}

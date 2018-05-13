@@ -8,7 +8,7 @@ import {
 } from "../commons";
 import isEmpty from "../../validation/is-empty";
 
-class Profile extends Component {
+class SaveProfile extends Component {
   constructor() {
     super();
     this.state = {
@@ -273,4 +273,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default SaveProfile;

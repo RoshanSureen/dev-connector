@@ -183,3 +183,37 @@ export const deleteEdu = params => dispatch => {
       });
     });
 };
+
+export const getProfiles = params => dispatch => {
+  dispatch(setProfileLoading(params));
+  APIManager.get("/profile/all")
+    .then(result => {
+      dispatch({
+        type: constants.GET_PROFILES,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_PROFILES,
+        data: null
+      });
+    });
+};
+
+export const getProfileByHandle = params => dispatch => {
+  dispatch(setProfileLoading(params));
+  APIManager.get(`/profile/handle/${params}`)
+    .then(result => {
+      dispatch({
+        type: constants.GET_PROFILE,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_PROFILE,
+        data: null
+      });
+    });
+};

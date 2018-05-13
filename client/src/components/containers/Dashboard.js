@@ -9,8 +9,7 @@ import {
   deleteEdu
 } from "../../actions";
 import { Spinner } from "../commons";
-import { DashboardActions } from "../view";
-import { ShowExperience, ShowEducation } from "../view";
+import { DashboardActions, ShowExperience, ShowEducation } from "../view";
 
 class Dashboard extends Component {
   componentDidMount() {
