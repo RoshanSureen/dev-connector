@@ -1,6 +1,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
-import { authReducer, errorReducer, profileReducer } from "../reducers";
+import {
+  authReducer,
+  errorReducer,
+  profileReducer,
+  postReducer
+} from "../reducers";
 
 var store;
 export default {
@@ -8,7 +13,8 @@ export default {
     const reducers = combineReducers({
       auth: authReducer,
       errors: errorReducer,
-      profile: profileReducer
+      profile: profileReducer,
+      post: postReducer
     });
     store = createStore(
       reducers,
