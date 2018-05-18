@@ -14,6 +14,7 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileCreds from "./ProfileCreds";
 import ProfileGithub from "./ProfileGithub";
 import ProfileHeader from "./ProfileHeader";
+import NotFound from "./NotFound";
 
 export {
   Nav,
@@ -31,5 +32,6 @@ export {
   ProfileAbout,
   ProfileCreds,
   ProfileGithub,
-  ProfileHeader
+  ProfileHeader,
+  NotFound
 };

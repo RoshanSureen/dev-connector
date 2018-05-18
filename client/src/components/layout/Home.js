@@ -16,7 +16,7 @@ import {
   Profiles,
   Profile
 } from "../containers";
-import { Footer, Landing } from "../view";
+import { Footer, Landing, NotFound } from "../view";
 import { PrivateRoute } from "../commons";
 
 class Home extends Component {
@@ -82,6 +82,7 @@ class Home extends Component {
             <Switch>
               <PrivateRoute exact path="/add-education" component={Education} />
             </Switch>
+            <Route exact path="/not-found" component={NotFound} />
           </div>
           <Footer />
         </div>
