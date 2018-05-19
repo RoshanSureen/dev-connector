@@ -14,7 +14,8 @@ import {
   Experience,
   Education,
   Profiles,
-  Profile
+  Profile,
+  Posts
 } from "../containers";
 import { Footer, Landing, NotFound } from "../view";
 import { PrivateRoute } from "../commons";
@@ -81,6 +82,9 @@ class Home extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/add-education" component={Education} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/feed" component={Posts} />
             </Switch>
             <Route exact path="/not-found" component={NotFound} />
           </div>

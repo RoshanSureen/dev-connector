@@ -1,9 +1,6 @@
 import constants from "../constants";
 import jwt_decode from "jwt-decode";
-import {
-  APIManager,
-  AuthToken
-} from "../utils";
+import { APIManager, AuthToken } from "../utils";
 
 // ================================================================================================
 // Auth Action Creators
@@ -25,9 +22,7 @@ export const registerUser = (params, history) => dispatch => {
 export const loginUser = params => dispatch => {
   APIManager.post("/user/login", params)
     .then(result => {
-      const {
-        token
-      } = result.data;
+      const { token } = result.data;
 
       // save token to localStorage
       localStorage.setItem("jwtToken", token);
@@ -227,18 +222,41 @@ export const getProfileByHandle = params => dispatch => {
 // Post Action Creators
 // ================================================================================================
 
+export const setPostLoading = params => {
+  return {
+    type: constants.POST_LOADING
+  };
+};
+
 export const addPost = params => dispatch => {
   APIManager.post("/api/post", params)
     .then(result => {
       dispatch({
         type: constants.ADD_POST,
         data: result.data
-      })
+      });
     })
     .catch(err => {
       dispatch({
         type: constants.GET_ERRORS,
         error: err.response.data.message
-      })
+      });
+    });
+};
+
+export const getPosts = params => dispatch => {
+  dispatch(setPostLoading(params));
+  APIManager.get("/api/post")
+    .then(result => {
+      dispatch({
+        type: constants.GET_POSTS,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_POSTS,
+        data: null
+      });
     });
 };

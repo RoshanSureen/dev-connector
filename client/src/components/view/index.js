@@ -15,6 +15,9 @@ import ProfileCreds from "./ProfileCreds";
 import ProfileGithub from "./ProfileGithub";
 import ProfileHeader from "./ProfileHeader";
 import NotFound from "./NotFound";
+import PostForm from "./PostForm";
+import PostFeed from "./PostFeed";
+import PostFeedItem from "./PostFeedItem";
 
 export {
   Nav,
@@ -33,5 +36,8 @@ export {
   ProfileCreds,
   ProfileGithub,
   ProfileHeader,
-  NotFound
+  NotFound,
+  PostForm,
+  PostFeed,
+  PostFeedItem
 };
