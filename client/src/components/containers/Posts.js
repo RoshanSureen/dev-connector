@@ -29,14 +29,6 @@ class Posts extends Component {
     this.props.addPost(postData);
   }
   render() {
-    const { posts, loading } = this.props.post;
-    let postContent;
-
-    if (posts === null || loading) {
-      postContent = <Spinner />;
-    } else {
-      postContent = <PostFeed posts={posts} />;
-    }
     return (
       <div className="feed">
         <div className="container">
