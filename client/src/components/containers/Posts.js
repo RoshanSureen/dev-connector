@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { PostForm } from "../view";
-import { Spinner } from "../commons";
+// import { Spinner } from "../commons";
 import { addPost, getPosts } from "../../actions";
 
 class Posts extends Component {
@@ -18,7 +18,9 @@ class Posts extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.err.errors) {
-      this.setState({ errors: nextProps.err.errors });
+      this.setState({
+        errors: nextProps.err.errors
+      });
     }
   }
   onSubmit(postData) {
@@ -34,21 +36,18 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <PostForm
-                submit={this.onSubmit.bind(this)}
-                errors={this.state.errors}
-              />
-            </div>
-          </div>
-        </div>
+              <PostForm submit={this.onSubmit.bind(this)} errors={this.state.errors} />{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>{" "}
       </div>
     );
   }
 }
 
 Posts.propTypes = {
-  auth: PropTypes.object.isRequired,
   err: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   addPost: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired

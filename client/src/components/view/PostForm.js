@@ -16,21 +16,25 @@ class PostForm extends Component {
     event.preventDefault();
     let updated = Object.assign({}, this.state.postData);
     updated[event.target.name] = event.target.value;
-    this.setState({ postData: updated });
+    this.setState({
+      postData: updated
+    });
   }
   submitItem(event) {
     event.preventDefault();
     this.props.submit(this.state.postData);
     let updated = Object.assign({}, this.state.postData);
     updated["text"] = "";
-    this.setState({ postData: updated });
+    this.setState({
+      postData: updated
+    });
   }
   render() {
     const { errors } = this.props;
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Somthing...</div>
+          <div className="card-header bg-info text-white"> Say Something... </div>{" "}
           <div className="card-body">
             <form onSubmit={this.submitItem.bind(this)}>
               <div className="form-group">
@@ -40,14 +44,14 @@ class PostForm extends Component {
                   value={this.state.postData.text}
                   error={errors.text}
                   onChange={this.updateItem.bind(this)}
-                />
-              </div>
+                />{" "}
+              </div>{" "}
               <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
+                Submit{" "}
+              </button>{" "}
+            </form>{" "}
+          </div>{" "}
+        </div>{" "}
       </div>
     );
   }
