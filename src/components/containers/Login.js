@@ -21,20 +21,18 @@ class Login extends Component {
       this.props.history.push("/dashboard");
     }
     if (nextProps.err.errors) {
-      this.setState({ errors: nextProps.err.errors });
+      this.setState({
+        errors: nextProps.err.errors
+      });
     }
   }
   submitLogin(credentials) {
-    console.log("Login container: " + JSON.stringify(credentials));
     this.props.loginUser(credentials);
   }
   render() {
     return (
       <div>
-        <LoginForm
-          errors={this.state.errors}
-          submit={this.submitLogin.bind(this)}
-        />
+        <LoginForm errors={this.state.errors} submit={this.submitLogin.bind(this)} />{" "}
       </div>
     );
   }
@@ -58,4 +56,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(Login);
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Login);
