@@ -53,6 +53,11 @@ app.use(
 app.use(cookieParser());
 
 if (!isProd) {
+  app.use(
+    historyApiFallback({
+      verbose: false
+    })
+  );
   const compiler = webpack(config);
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
@@ -63,13 +68,8 @@ if (!isProd) {
 
   app.use(webpackDevMiddleware);
   app.use(webpackHotMiddleware);
-  app.use(
-    historyApiFallback({
-      verbose: false
-    })
-  );
+
   console.log("Middleware enabled");
-  app.use(express.static(path.join(__dirname, "../dist")));
 } else {
   app.use(
     expressStaticGzip(path.join(__dirname, "../dist"), {
@@ -83,9 +83,11 @@ app.use("/user", user);
 app.use("/profile", profile);
 app.use("/api", api);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
-});
+if (isProd) {
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
+  });
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -5,9 +5,9 @@
   "scripts": {
     "start": "webpack-dev-server --config=webpack.config.js",
     "build": "npm run clean && NODE_ENV=production webpack --config=webpack.config.js",
-    "build:dev": "webpack --config=webpack.config.js",
+    "build:dev": "npm run clean && webpack --config=webpack.config.js",
     "clean": "rm -rf dist",
-    "dev": "npm run build:dev && nodemon ./server",
+    "dev": "nodemon ./server",
     "prod": "NODE_ENV=production node ./server"
   },
   "dependencies": {
