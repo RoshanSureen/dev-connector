@@ -1,5 +1,5 @@
-import Spinner from "./spinner.gif";
+import spinner from "./spinner.gif";
 
 export {
-  Spinner
+  spinner
 }
