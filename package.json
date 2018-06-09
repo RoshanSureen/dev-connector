@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --config=webpack.config.js",
+    "start": "NODE_ENV=development webpack-dev-server --config=webpack.config.js",
     "build": "npm run clean && NODE_ENV=production webpack --config=webpack.config.js",
-    "build:dev": "npm run clean && webpack --config=webpack.config.js",
+    "build:dev": "npm run clean && NODE_ENV=development webpack --config=webpack.config.js",
     "clean": "rm -rf dist",
-    "dev": "nodemon ./server",
+    "dev": "NODE_ENV=development nodemon ./server",
     "prod": "NODE_ENV=production node ./server"
   },
   "dependencies": {
