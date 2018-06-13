@@ -19,6 +19,9 @@ import user from "../routes/user";
 import profile from "../routes/profile";
 import api from "../routes/api";
 
+const isProd = process.env.NODE_ENV === "production";
+const port = process.env.PORT || 3000;
+
 // Database connection
 mongoose.connect(
   process.env.DB_URL,
@@ -30,9 +33,6 @@ mongoose.connect(
     }
   }
 );
-
-const isProd = process.env.NODE_ENV === "production";
-const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -71,6 +71,12 @@ if (!isProd) {
 
   console.log("Middleware enabled");
   app.use(express.static(path.join(__dirname, '../dist')));
+} else {
+  app.use(
+    expressStaticGzip(path.join(__dirname, "../dist"), {
+      enableBrotli: true
+    })
+  );
 }
 
 app.use("/", index);
@@ -79,14 +85,8 @@ app.use("/profile", profile);
 app.use("/api", api);
 
 if (isProd) {
-  app.use(
-    expressStaticGzip(path.join(__dirname, "../dist"), {
-      enableBrotli: true
-    })
-  );
-  app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../dist/index.html'));
-    res.end();
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
   });
 }
 
