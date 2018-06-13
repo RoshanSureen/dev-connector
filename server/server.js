@@ -53,12 +53,12 @@ app.use(
 app.use(cookieParser());
 
 if (!isProd) {
+  const compiler = webpack(config);
   app.use(
     historyApiFallback({
       verbose: false
     })
   );
-  const compiler = webpack(config);
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
     compiler,
@@ -70,12 +70,7 @@ if (!isProd) {
   app.use(webpackHotMiddleware);
 
   console.log("Middleware enabled");
-} else {
-  app.use(
-    expressStaticGzip(path.join(__dirname, "../dist"), {
-      enableBrotli: true
-    })
-  );
+  app.use(express.static(path.join(__dirname, '../dist')));
 }
 
 app.use("/", index);
@@ -84,8 +79,14 @@ app.use("/profile", profile);
 app.use("/api", api);
 
 if (isProd) {
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
+  app.use(
+    expressStaticGzip(path.join(__dirname, "../dist"), {
+      enableBrotli: true
+    })
+  );
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+    res.end();
   });
 }
 
@@ -98,11 +99,11 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
 app.listen(port, () =>

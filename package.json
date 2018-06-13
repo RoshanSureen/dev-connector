@@ -7,7 +7,7 @@
     "build": "npm run clean && NODE_ENV=production webpack --config=webpack.config.js",
     "build:dev": "npm run clean && NODE_ENV=development webpack --config=webpack.config.js",
     "clean": "rm -rf dist",
-    "dev": "NODE_ENV=development nodemon ./server",
+    "dev": "NODE_ENV=development nodemon --watch ./server --watch ./config ./server",
     "prod": "NODE_ENV=production node ./server"
   },
   "dependencies": {

@@ -4,12 +4,13 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
+    vendor: ["react", "react-dom"],
     app: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
       "babel-register",
+      "./src/main.js",
       "webpack-hot-middleware/client?reload=true",
-      "./src/main.js"
     ]
   },
   mode: "development",
@@ -19,23 +20,15 @@ module.exports = {
     publicPath: "/"
   },
   devServer: {
-    contentBase: "dist",
+    contentBase: path.resolve(__dirname, '../dist'),
     overlay: true,
-    hot: true,
     stats: {
-      colors: true
-    }
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-      cacheGroups: {
-        vendor: {
-          name: "vendor",
-          chunks: "initial",
-          minChunks: 2
-        }
-      }
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
     }
   },
   devtool: "#source-map",

@@ -9,6 +9,7 @@ const BrotliPlugin = require("brotli-webpack-plugin");
 
 module.exports = {
   entry: {
+    vendor: ["react", "react-dom"],
     app: ["./src/main.js"]
   },
   mode: "production",
@@ -19,7 +20,6 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
       cacheGroups: {
         vendor: {
           name: "vendor",
