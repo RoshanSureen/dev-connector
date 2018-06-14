@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       return updated;
 
     case constants.ADD_POST:
-      updated["posts"] = [action.data, ...updated["posts"]];
+      updated["posts"] = [action.data.result, ...updated["posts"]];
       return updated;
 
     default:
