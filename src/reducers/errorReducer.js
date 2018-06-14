@@ -10,7 +10,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case constants.GET_ERRORS:
       updated["errors"] = action.error;
-      console.log("Error reducer: " + JSON.stringify(updated));
       return updated;
     default:
       return updated;

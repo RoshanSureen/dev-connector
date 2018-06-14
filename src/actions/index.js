@@ -231,10 +231,16 @@ export const setPostLoading = params => {
 export const deletePost = params => dispatch => {
   APIManager.delete(`/api/post/${params}`)
     .then(result => {
-      dispatch({ type: constants.DELETE_POST, data: result.data });
+      dispatch({
+        type: constants.DELETE_POST,
+        data: result.data
+      });
     })
     .catch(err => {
-      dispatch({ type: constants.GET_ERRORS, error: err.response.data.message });
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
     });
 };
 
@@ -267,6 +273,28 @@ export const getPosts = params => dispatch => {
       dispatch({
         type: constants.GET_POSTS,
         data: null
+      });
+    });
+};
+
+export const addLike = params => dispatch => {
+  APIManager.post(`/api/post/like/${params}`)
+    .then(result => dispatch(getPosts(null)))
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};
+
+export const removeLike = params => dispatch => {
+  APIManager.post(`/api/post/unlike/${params}`)
+    .then(result => dispatch(getPosts(null)))
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
       });
     });
 };

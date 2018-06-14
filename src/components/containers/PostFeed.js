@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { PostFeedItem } from "../view";
-import { deletePost } from "../../actions";
+import { deletePost, addLike, removeLike } from "../../actions";
 
 class PostFeed extends Component {
   onDelete(postId) {
     this.props.deletePost(postId);
+  }
+  onLike(postId) {
+    this.props.addLike(postId);
+  }
+  onUnlike(postId) {
+    this.props.removeLike(postId);
   }
   render() {
     const { posts, auth } = this.props;
@@ -16,6 +22,8 @@ class PostFeed extends Component {
         post={post}
         auth={auth}
         delete={this.onDelete.bind(this)}
+        like={this.onLike.bind(this)}
+        unlike={this.onUnlike.bind(this)}
       />
     ));
   }
@@ -23,7 +31,9 @@ class PostFeed extends Component {
 
 PostFeed.propTypes = {
   posts: PropTypes.array.isRequired,
-  deletePost: PropTypes.func.isRequired
+  deletePost: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired
 };
 
 const stateToProps = state => {
@@ -34,7 +44,9 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    deletePost: params => dispatch(deletePost(params))
+    deletePost: params => dispatch(deletePost(params)),
+    addLike: params => dispatch(addLike(params)),
+    removeLike: params => dispatch(removeLike(params))
   };
 };
 
