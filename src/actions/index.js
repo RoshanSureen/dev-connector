@@ -228,6 +228,16 @@ export const setPostLoading = params => {
   };
 };
 
+export const deletePost = params => dispatch => {
+  APIManager.delete(`/api/post/${params}`)
+    .then(result => {
+      dispatch({ type: constants.DELETE_POST, data: result.data });
+    })
+    .catch(err => {
+      dispatch({ type: constants.GET_ERRORS, error: err.response.data.message });
+    });
+};
+
 export const addPost = params => dispatch => {
   APIManager.post("/api/post", params)
     .then(result => {

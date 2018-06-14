@@ -24,6 +24,11 @@ export default (state = initialState, action) => {
       updated["posts"] = [action.data.result, ...updated["posts"]];
       return updated;
 
+    case constants.DELETE_POST:
+      let postId = action.data.result._id;
+      updated["posts"] = updated["posts"].filter(post => post._id !== postId);
+      return updated;
+
     default:
       return updated;
   }
