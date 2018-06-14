@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
       return updated;
 
     case constants.GET_POSTS:
-      updated["posts"] = action.data;
+      updated["posts"] = action.data.results;
       updated["loading"] = false;
       return updated;
 

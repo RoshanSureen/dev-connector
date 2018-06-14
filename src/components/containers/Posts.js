@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PostFeed from "./PostFeed";
 import { PostForm } from "../view";
-// import { Spinner } from "../commons";
+import { Spinner } from "../commons";
 import { addPost, getPosts } from "../../actions";
 
 class Posts extends Component {
@@ -31,12 +32,21 @@ class Posts extends Component {
     this.props.addPost(postData);
   }
   render() {
+    const { posts, loading } = this.props.post;
+    let postContent;
+
+    if (posts === null || loading) {
+      postContent = <Spinner />;
+    } else {
+      postContent = <PostFeed posts={posts} />;
+    }
     return (
       <div className="feed">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <PostForm submit={this.onSubmit.bind(this)} errors={this.state.errors} />{" "}
+              {postContent}
             </div>{" "}
           </div>{" "}
         </div>{" "}
@@ -68,4 +78,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(Posts);
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Posts);
