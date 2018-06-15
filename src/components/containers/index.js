@@ -9,6 +9,7 @@ import Education from "./Education";
 import Profiles from "./profile/Profiles";
 import Profile from "./profile/Profile";
 import Posts from "./feed/Posts"
+import Post from "./feed/Post";
 
 export {
   Navbar,
@@ -21,5 +22,6 @@ export {
   Education,
   Profiles,
   Profile,
-  Posts
+  Posts,
+  Post
 };

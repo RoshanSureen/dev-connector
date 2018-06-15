@@ -10,13 +10,17 @@ export default (state = initialState, action) => {
   let updated = Object.assign({}, state);
 
   switch (action.type) {
-
     case constants.POST_LOADING:
       updated["loading"] = true;
       return updated;
 
     case constants.GET_POSTS:
       updated["posts"] = action.data.results;
+      updated["loading"] = false;
+      return updated;
+
+    case constants.GET_POST:
+      updated["post"] = action.data;
       updated["loading"] = false;
       return updated;
 

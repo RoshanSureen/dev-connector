@@ -56,6 +56,23 @@ export const getPosts = params => dispatch => {
     });
 };
 
+export const getPostById = params => dispatch => {
+  dispatch(setPostLoading(params));
+  APIManager.get(`/api/post/${params}`)
+    .then(result => {
+      dispatch({
+        type: constants.GET_POST,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_POST,
+        data: null
+      });
+    });
+};
+
 export const addLike = params => dispatch => {
   APIManager.post(`/api/post/like/${params}`)
     .then(result => dispatch(getPosts(null)))
