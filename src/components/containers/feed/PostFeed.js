@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { PostFeedItem } from "../view";
-import { deletePost, addLike, removeLike } from "../../actions";
+import { PostItem } from "../../view";
+import { deletePost, addLike, removeLike } from "../../../actions/Post";
 
 class PostFeed extends Component {
   onDelete(postId) {
@@ -17,7 +17,7 @@ class PostFeed extends Component {
   render() {
     const { posts, auth } = this.props;
     return posts.map(post => (
-      <PostFeedItem
+      <PostItem
         key={post._id}
         post={post}
         auth={auth}

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser, clearCurrentProfile } from "../../actions";
+import { logoutUser } from "../../actions/Auth";
+import { clearCurrentProfile } from "../../actions/Profile";
 import { Nav } from "../view";
 
 class Navbar extends Component {
@@ -40,4 +41,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(Navbar);
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Navbar);

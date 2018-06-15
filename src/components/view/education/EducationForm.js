@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { TextFieldGroup, TextAreaFieldGroup } from "../commons";
+import { TextFieldGroup, TextAreaFieldGroup } from "../../commons";
 
-class ExperienceForm extends Component {
+class EducationForm extends Component {
   constructor() {
     super();
     this.state = {
-      company: "",
-      title: "",
-      location: "",
+      school: "",
+      degree: "",
+      field: "",
       from: "",
       to: "",
       current: false,
@@ -29,53 +29,53 @@ class ExperienceForm extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
-    const exp_data = {
-      company: this.state.company,
-      title: this.state.title,
-      location: this.state.location,
+    const edu_data = {
+      school: this.state.school,
+      degree: this.state.degree,
+      field: this.state.field,
       from: this.state.from,
       to: this.state.to,
       current: this.state.current,
       description: this.state.description
     };
-    this.props.submit(exp_data);
+    this.props.submit(edu_data);
   }
   render() {
     const { errors } = this.props;
     return (
-      <div className="add-experience">
+      <div className="add-education">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Add Experience</h1>
+              <h1 className="display-4 text-center">Add Education</h1>
               <p className="lead text-center">
-                Add any job or position that you have had in the past or current
+                Add any school, bootcamp etc. that you have attended
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit.bind(this)}>
                 <TextFieldGroup
-                  placeholder="* Company"
-                  name="company"
-                  value={this.state.company}
+                  placeholder="* School"
+                  name="school"
+                  value={this.state.school}
                   onChange={this.updateItem.bind(this)}
-                  error={errors.company}
+                  error={errors.school}
                 />
                 <TextFieldGroup
-                  placeholder="* Job Title"
-                  name="title"
-                  value={this.state.title}
+                  placeholder="* Degree or Certification"
+                  name="degree"
+                  value={this.state.degree}
                   onChange={this.updateItem.bind(this)}
-                  error={errors.title}
+                  error={errors.degree}
                 />
                 <TextFieldGroup
-                  placeholder="Location"
-                  name="location"
-                  value={this.state.location}
+                  placeholder="* Field Of Study"
+                  name="field"
+                  value={this.state.field}
                   onChange={this.updateItem.bind(this)}
-                  error={errors.location}
+                  error={errors.field}
                 />
                 <h6>From Date</h6>
                 <TextFieldGroup
@@ -92,7 +92,7 @@ class ExperienceForm extends Component {
                   value={this.state.to}
                   onChange={this.updateItem.bind(this)}
                   error={errors.to}
-                  disabled={this.state.disabled ? 'disabled' : ''}
+                  disabled={this.state.disabled ? "disabled" : ""}
                 />
                 <div className="form-check mb-4">
                   <input
@@ -105,16 +105,16 @@ class ExperienceForm extends Component {
                     id="current"
                   />
                   <label htmlFor="current" className="form-check-label">
-                    Current Job
+                    Current School
                   </label>
                 </div>
                 <TextAreaFieldGroup
-                  placeholder="Job Description"
+                  placeholder="Program Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.updateItem.bind(this)}
                   error={errors.description}
-                  info="Tell us about the the position"
+                  info="Tell us about the program you were in"
                 />
                 <input
                   type="submit"
@@ -130,4 +130,4 @@ class ExperienceForm extends Component {
   }
 }
 
-export default ExperienceForm;
+export default EducationForm;

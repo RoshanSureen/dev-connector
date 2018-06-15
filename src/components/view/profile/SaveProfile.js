@@ -5,8 +5,8 @@ import {
   InputGroup,
   SelectListGroup,
   TextAreaFieldGroup
-} from "../commons";
-import isEmpty from "../../validation/is-empty";
+} from "../../commons";
+import isEmpty from "../../../validation/is-empty";
 
 class SaveProfile extends Component {
   constructor() {
@@ -52,9 +52,7 @@ class SaveProfile extends Component {
       // Bring skills array back to comma spereated values
       profile.skills = profile.result.skills.join(",");
 
-      profile.githubusername = !isEmpty.isEmpty(
-        nextProps.profile.result.githubusername
-      )
+      profile.githubusername = !isEmpty.isEmpty(nextProps.profile.result.githubusername)
         ? nextProps.profile.result.githubusername
         : "";
       profile.bio = !isEmpty.isEmpty(nextProps.profile.result.bio)
@@ -65,29 +63,19 @@ class SaveProfile extends Component {
         : {};
 
       // Check social field and if it does not exist make an empty string
-      profile.twitter = !isEmpty.isEmpty(
-        nextProps.profile.result.social.twitter
-      )
+      profile.twitter = !isEmpty.isEmpty(nextProps.profile.result.social.twitter)
         ? nextProps.profile.result.social.twitter
         : "";
-      profile.facebook = !isEmpty.isEmpty(
-        nextProps.profile.result.social.facebook
-      )
+      profile.facebook = !isEmpty.isEmpty(nextProps.profile.result.social.facebook)
         ? nextProps.profile.result.social.facebook
         : "";
-      profile.youtube = !isEmpty.isEmpty(
-        nextProps.profile.result.social.youtube
-      )
+      profile.youtube = !isEmpty.isEmpty(nextProps.profile.result.social.youtube)
         ? nextProps.profile.result.social.youtube
         : "";
-      profile.linkedin = !isEmpty.isEmpty(
-        nextProps.profile.result.social.linkedin
-      )
+      profile.linkedin = !isEmpty.isEmpty(nextProps.profile.result.social.linkedin)
         ? nextProps.profile.result.social.linkedin
         : "";
-      profile.instagram = !isEmpty.isEmpty(
-        nextProps.profile.result.social.instagram
-      )
+      profile.instagram = !isEmpty.isEmpty(nextProps.profile.result.social.instagram)
         ? nextProps.profile.result.social.instagram
         : "";
 

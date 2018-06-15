@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import isEmpty from "../../validation/is-empty";
+import isEmpty from "../../../validation/is-empty";
 
 class ProfileHeader extends Component {
   render() {
@@ -11,11 +11,7 @@ class ProfileHeader extends Component {
           <div className="card card-body bg-info text-white mb-3">
             <div className="row">
               <div className="col-4 col-md-3 m-auto">
-                <img
-                  className="rounded-circle"
-                  src={profile.user.avatar}
-                  alt=""
-                />
+                <img className="rounded-circle" src={profile.user.avatar} alt="" />
               </div>
             </div>
             <div className="text-center">
@@ -26,23 +22,15 @@ class ProfileHeader extends Component {
                   <span>at {profile.company}</span>
                 )}
               </p>
-              {isEmpty.isEmpty(profile.location) ? null : (
-                <p>{profile.location}</p>
-              )}
+              {isEmpty.isEmpty(profile.location) ? null : <p>{profile.location}</p>}
               <p>
                 {isEmpty.isEmpty(profile.website) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={profile.website}
-                    target="_blank"
-                  >
+                  <a className="text-white p-2" href={profile.website} target="_blank">
                     <i className="fas fa-globe fa-2x" />
                   </a>
                 )}
 
-                {isEmpty.isEmpty(
-                  profile.social && profile.social.twitter
-                ) ? null : (
+                {isEmpty.isEmpty(profile.social && profile.social.twitter) ? null : (
                   <a
                     className="text-white p-2"
                     href={profile.social.twitter}
@@ -52,9 +40,7 @@ class ProfileHeader extends Component {
                   </a>
                 )}
 
-                {isEmpty.isEmpty(
-                  profile.social && profile.social.facebook
-                ) ? null : (
+                {isEmpty.isEmpty(profile.social && profile.social.facebook) ? null : (
                   <a
                     className="text-white p-2"
                     href={profile.social.facebook}
@@ -64,9 +50,7 @@ class ProfileHeader extends Component {
                   </a>
                 )}
 
-                {isEmpty.isEmpty(
-                  profile.social && profile.social.instagram
-                ) ? null : (
+                {isEmpty.isEmpty(profile.social && profile.social.instagram) ? null : (
                   <a
                     className="text-white p-2"
                     href={profile.social.instagram}
@@ -76,9 +60,7 @@ class ProfileHeader extends Component {
                   </a>
                 )}
 
-                {isEmpty.isEmpty(
-                  profile.social && profile.social.youtube
-                ) ? null : (
+                {isEmpty.isEmpty(profile.social && profile.social.youtube) ? null : (
                   <a
                     className="text-white p-2"
                     href={profile.social.youtube}
@@ -88,9 +70,7 @@ class ProfileHeader extends Component {
                   </a>
                 )}
 
-                {isEmpty.isEmpty(
-                  profile.social && profile.social.linkedin
-                ) ? null : (
+                {isEmpty.isEmpty(profile.social && profile.social.linkedin) ? null : (
                   <a
                     className="text-white p-2"
                     href={profile.social.linkedin}

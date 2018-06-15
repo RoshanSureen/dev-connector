@@ -7,7 +7,7 @@ import {
   deleteAccount,
   deleteExp,
   deleteEdu
-} from "../../actions";
+} from "../../actions/Profile";
 import { Spinner } from "../commons";
 import { DashboardActions, ShowExperience, ShowEducation } from "../view";
 
@@ -39,8 +39,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome{" "}
-              <Link to={`/profile/${profile.result.handle}`}>{user.name}</Link>
+              Welcome <Link to={`/profile/${profile.result.handle}`}>{user.name}</Link>
             </p>
             <DashboardActions />
             <ShowExperience
@@ -52,10 +51,7 @@ class Dashboard extends Component {
               education={profile.result.education}
             />
             <div style={{ marginBottom: "60px" }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
+            <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
               Delete My Account
             </button>
           </div>
@@ -114,4 +110,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(statetToProps, dispatchToProps)(Dashboard);
+export default connect(
+  statetToProps,
+  dispatchToProps
+)(Dashboard);

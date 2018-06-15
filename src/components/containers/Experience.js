@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { ExperienceForm } from "../view";
-import { addExperience } from "../../actions";
+import { addExperience } from "../../actions/Profile";
 
 class Experience extends Component {
   constructor() {
@@ -14,7 +14,9 @@ class Experience extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.err.errors) {
-      this.setState({ errors: nextProps.err.errors });
+      this.setState({
+        errors: nextProps.err.errors
+      });
     }
   }
   onSubmit(exp_data) {
@@ -23,10 +25,7 @@ class Experience extends Component {
   }
   render() {
     return (
-      <ExperienceForm
-        errors={this.state.errors}
-        submit={this.onSubmit.bind(this)}
-      />
+      <ExperienceForm errors={this.state.errors} submit={this.onSubmit.bind(this)} />
     );
   }
 }
@@ -50,4 +49,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(withRouter(Experience));
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(withRouter(Experience));

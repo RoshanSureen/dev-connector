@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Spinner } from "../commons";
-import { getProfiles } from "../../actions";
-import { ProfileItem } from "../view";
+import { Spinner } from "../../commons";
+import { getProfiles } from "../../../actions/Profile";
+import { ProfileItem } from "../../view";
 
 class Profiles extends Component {
   componentDidMount() {
@@ -18,10 +18,8 @@ class Profiles extends Component {
     } else {
       if (profiles.result.length > 0) {
         profileItems = profiles.result.map(profile => {
-          return (
-            <ProfileItem key={profile._id} profile={profile} />
-          );
-        })
+          return <ProfileItem key={profile._id} profile={profile} />;
+        });
       } else {
         profileItems = <h4>No Profiles Found!</h4>;
       }
@@ -32,9 +30,7 @@ class Profiles extends Component {
           <div className="row">
             <div className="col-md-12">
               <h1 className="display-4 text-center">Developer Profiles</h1>
-              <p className="lead text-center">
-                Browse and connect with developers
-              </p>
+              <p className="lead text-center">Browse and connect with developers</p>
               {profileItems}
             </div>
           </div>
@@ -61,4 +57,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(Profiles);
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Profiles);

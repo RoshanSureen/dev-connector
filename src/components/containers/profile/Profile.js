@@ -2,14 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { getProfileByHandle } from "../../actions";
-import {
-  ProfileAbout,
-  ProfileCreds,
-  ProfileGithub,
-  ProfileHeader
-} from "../view";
-import { Spinner } from "../commons";
+import { getProfileByHandle } from "../../../actions/Profile";
+import { ProfileAbout, ProfileCreds, ProfileGithub, ProfileHeader } from "../../view";
+import { Spinner } from "../../commons";
 
 class Profile extends Component {
   componentDidMount() {
@@ -82,4 +77,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(Profile);
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Profile);

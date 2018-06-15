@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
-import { setCurrentUser, logoutUser, clearCurrentProfile } from "../../actions";
+import { setCurrentUser, logoutUser } from "../../actions/Auth";
+import { clearCurrentProfile } from "../../actions/Profile";
 import { AuthToken } from "../../utils";
 import {
   Navbar,
@@ -60,25 +61,13 @@ class Home extends Component {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
             <Switch>
-              <PrivateRoute
-                exact
-                path="/create-profile"
-                component={CreateProfile}
-              />
+              <PrivateRoute exact path="/create-profile" component={CreateProfile} />
             </Switch>
             <Switch>
-              <PrivateRoute
-                exact
-                path="/edit-profile"
-                component={EditProfile}
-              />
+              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
             </Switch>
             <Switch>
-              <PrivateRoute
-                exact
-                path="/add-experience"
-                component={Experience}
-              />
+              <PrivateRoute exact path="/add-experience" component={Experience} />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/add-education" component={Education} />
@@ -103,4 +92,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, dispatchToProps)(Home);
+export default connect(
+  null,
+  dispatchToProps
+)(Home);

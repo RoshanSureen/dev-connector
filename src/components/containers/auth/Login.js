@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions";
-import { LoginForm } from "../view";
+import { loginUser } from "../../../actions/Auth";
+import { LoginForm } from "../../view";
 
 class Login extends Component {
   constructor() {

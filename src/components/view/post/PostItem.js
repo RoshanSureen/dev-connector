@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 
-class PostFeedItem extends Component {
+class PostItem extends Component {
   onDeleteClick(id) {
     this.props.delete(id);
   }
@@ -33,12 +33,12 @@ class PostFeedItem extends Component {
                 src={post.avatar}
                 alt=""
               />
-            </a>
+            </a>{" "}
             <br />
-            <p className="text-center">{post.name}</p>
-          </div>
+            <p className="text-center"> {post.name} </p>{" "}
+          </div>{" "}
           <div className="col-md-10">
-            <p className="lead">{post.text}</p>
+            <p className="lead"> {post.text} </p>{" "}
             <button
               onClick={this.onLikeClick.bind(this, post._id)}
               type="button"
@@ -48,19 +48,19 @@ class PostFeedItem extends Component {
                 className={classnames("fas fa-thumbs-up", {
                   "text-info": this.findUserLike(post.likes)
                 })}
-              />
-              <span className="badge badge-light">{post.likes.length}</span>
-            </button>
+              />{" "}
+              <span className="badge badge-light"> {post.likes.length} </span>{" "}
+            </button>{" "}
             <button
               onClick={this.onUnlikeClick.bind(this, post._id)}
               type="button"
               className="btn btn-light mr-1"
             >
               <i className="text-secondary fas fa-thumbs-down" />
-            </button>
+            </button>{" "}
             <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-              Comments
-            </Link>
+              Comments{" "}
+            </Link>{" "}
             {post.user === auth.user.id ? (
               <button
                 onClick={this.onDeleteClick.bind(this, post._id)}
@@ -70,16 +70,16 @@ class PostFeedItem extends Component {
                 {" "}
                 <i className="fas fa-times" />{" "}
               </button>
-            ) : null}
-          </div>
-        </div>
+            ) : null}{" "}
+          </div>{" "}
+        </div>{" "}
       </div>
     );
   }
 }
 
-PostFeedItem.propTypes = {
+PostItem.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-export default PostFeedItem;
+export default PostItem;

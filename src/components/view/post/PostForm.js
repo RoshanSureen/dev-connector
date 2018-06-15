@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { TextAreaFieldGroup } from "../commons";
+import { TextAreaFieldGroup } from "../../commons";
 
 class PostForm extends Component {
   constructor() {

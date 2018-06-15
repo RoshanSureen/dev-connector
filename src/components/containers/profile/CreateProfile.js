@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { SaveProfile } from "../view";
-import { createProfile } from "../../actions";
+import { SaveProfile } from "../../view";
+import { createProfile } from "../../../actions/Profile";
 
 class CreateProfile extends Component {
   constructor() {
@@ -23,8 +23,7 @@ class CreateProfile extends Component {
   }
   render() {
     const title = "Create Your Profile";
-    const subTitle =
-      "Let's get some information to make your profile stand out";
+    const subTitle = "Let's get some information to make your profile stand out";
     return (
       <SaveProfile
         title={title}
@@ -54,6 +53,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(
-  withRouter(CreateProfile)
-);
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(withRouter(CreateProfile));

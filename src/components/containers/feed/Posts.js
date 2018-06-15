@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import PostFeed from "./PostFeed";
-import { PostForm } from "../view";
-import { Spinner } from "../commons";
-import { addPost, getPosts } from "../../actions";
+import { PostForm } from "../../view";
+import { Spinner } from "../../commons";
+import { addPost, getPosts } from "../../../actions/Post";
 
 class Posts extends Component {
   constructor() {

@@ -1,22 +1,22 @@
 import Nav from "./Nav";
 import Footer from "./Footer";
 import Landing from "./Landing";
-import RegisterForm from "./RegisterForm";
-import LoginForm from "./LoginForm";
-import SaveProfile from "./SaveProfile";
+import RegisterForm from "./auth/RegisterForm";
+import LoginForm from "./auth/LoginForm";
+import SaveProfile from "./profile/SaveProfile";
 import DashboardActions from "./DashboardActions";
-import ExperienceForm from "./ExperienceForm";
-import EducationForm from "./EducationForm";
-import ShowExperience from "./ShowExperience";
-import ShowEducation from "./ShowEducation";
-import ProfileItem from "./ProfileItem";
-import ProfileAbout from "./ProfileAbout";
-import ProfileCreds from "./ProfileCreds";
-import ProfileGithub from "./ProfileGithub";
-import ProfileHeader from "./ProfileHeader";
+import ExperienceForm from "./experience/ExperienceForm";
+import EducationForm from "./education/EducationForm";
+import ShowExperience from "./experience/ShowExperience";
+import ShowEducation from "./education/ShowEducation";
+import ProfileItem from "./profile/ProfileItem";
+import ProfileAbout from "./profile/ProfileAbout";
+import ProfileCreds from "./profile/ProfileCreds";
+import ProfileGithub from "./profile/ProfileGithub";
+import ProfileHeader from "./profile/ProfileHeader";
 import NotFound from "./NotFound";
-import PostForm from "./PostForm";
-import PostFeedItem from "./PostFeedItem";
+import PostForm from "./post/PostForm";
+import PostItem from "./post/PostItem";
 
 export {
   Nav,
@@ -37,5 +37,5 @@ export {
   ProfileHeader,
   NotFound,
   PostForm,
-  PostFeedItem
+  PostItem
 };

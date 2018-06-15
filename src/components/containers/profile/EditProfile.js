@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { SaveProfile } from "../view";
-import { createProfile, getCurrentProfile } from "../../actions";
+import { SaveProfile } from "../../view";
+import { createProfile, getCurrentProfile } from "../../../actions/Profile";
 
 class EditProfile extends Component {
   constructor() {
@@ -18,11 +18,15 @@ class EditProfile extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.err.errors) {
-      this.setState({ errors: nextProps.err.errors });
+      this.setState({
+        errors: nextProps.err.errors
+      });
     }
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
-      this.setState({ profile });
+      this.setState({
+        profile
+      });
     }
   }
   onSubmit(profile_data) {
@@ -30,8 +34,7 @@ class EditProfile extends Component {
   }
   render() {
     const title = "Edit Your Profile";
-    const subTitle =
-      "Update or Add new information to make your profile stand out";
+    const subTitle = "Update or Add new information to make your profile stand out";
     return (
       <SaveProfile
         profile={this.state.profile}
@@ -60,10 +63,12 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    createProfile: (params, history) =>
-      dispatch(createProfile(params, history)),
+    createProfile: (params, history) => dispatch(createProfile(params, history)),
     getCurrentProfile: params => dispatch(getCurrentProfile(params))
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(withRouter(EditProfile));
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(withRouter(EditProfile));

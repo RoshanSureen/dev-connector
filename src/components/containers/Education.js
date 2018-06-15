@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { EducationForm } from "../view";
-import { addEducation } from "../../actions";
+import { addEducation } from "../../actions/Profile";
 
 class Education extends Component {
   constructor() {
@@ -22,12 +22,7 @@ class Education extends Component {
     this.props.addEducation(edu_data, this.props.history);
   }
   render() {
-    return (
-      <EducationForm
-        errors={this.state.errors}
-        submit={this.onSubmit.bind(this)}
-      />
-    );
+    return <EducationForm errors={this.state.errors} submit={this.onSubmit.bind(this)} />;
   }
 }
 
@@ -50,4 +45,7 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(withRouter(Education));
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(withRouter(Education));
