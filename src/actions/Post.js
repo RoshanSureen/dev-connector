@@ -7,6 +7,12 @@ export const setPostLoading = params => {
   };
 };
 
+export const clearErrors = params => {
+  return {
+    type: constants.CLEAR_ERRORS
+  };
+};
+
 export const deletePost = params => dispatch => {
   APIManager.delete(`/api/post/${params}`)
     .then(result => {
@@ -24,6 +30,7 @@ export const deletePost = params => dispatch => {
 };
 
 export const addPost = params => dispatch => {
+  dispatch(clearErrors(null));
   APIManager.post("/api/post", params)
     .then(result => {
       dispatch({
@@ -85,6 +92,7 @@ export const addLike = params => dispatch => {
 };
 
 export const addComment = (id, params) => dispatch => {
+  dispatch(clearErrors(null));
   APIManager.post(`/api/post/comment/${id}`, params)
     .then(result => {
       dispatch({

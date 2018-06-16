@@ -11,6 +11,11 @@ export default (state = initialState, action) => {
     case constants.GET_ERRORS:
       updated["errors"] = action.error;
       return updated;
+
+    case constants.CLEAR_ERRORS:
+      updated["errors"] = {};
+      return updated;
+
     default:
       return updated;
   }
