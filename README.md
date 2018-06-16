@@ -4,7 +4,7 @@ A platform for developers to connect. They can create their portofolio by adding
 
 Users can also create small posts and like/dislike and comment on other posts.
 
-Live link: <a href="https://safe-ocean-88144.herokuapp.com/" target="_blank"> Click here</a>
+Live link: <a href="https://mighty-dusk-38771.herokuapp.com/" target="_blank"> Click here</a>
 
 <img src="img/home.png">
 
@@ -91,6 +91,16 @@ git push heroku master:master
 ---
 
 <img src="img/developer-profiles.png">
+
+---
+
+<img src="img/post-feed.png">
+
+---
+
+<img src="img/comment-feed.png">
+
+---
 
 ## Main Technologies
 
