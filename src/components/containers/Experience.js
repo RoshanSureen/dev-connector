@@ -20,7 +20,6 @@ class Experience extends Component {
     }
   }
   onSubmit(exp_data) {
-    // console.log("Experience Contianer: " + JSON.stringify(exp_data));
     this.props.addExperience(exp_data, this.props.history);
   }
   render() {

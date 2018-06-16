@@ -13,15 +13,17 @@ class Profiles extends Component {
     const { profiles, loading } = this.props.profile;
     let profileItems;
 
-    if (profiles === null || loading === true) {
+    if (loading) {
       profileItems = <Spinner />;
+    } else if (profiles === null) {
+      profileItems = <h4> There are no Developer Profiles </h4>;
     } else {
       if (profiles.result.length > 0) {
         profileItems = profiles.result.map(profile => {
           return <ProfileItem key={profile._id} profile={profile} />;
         });
       } else {
-        profileItems = <h4>No Profiles Found!</h4>;
+        profileItems = <h4> No Profiles Found! </h4>;
       }
     }
     return (
@@ -29,12 +31,12 @@ class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Developer Profiles</h1>
-              <p className="lead text-center">Browse and connect with developers</p>
-              {profileItems}
-            </div>
-          </div>
-        </div>
+              <h1 className="display-4 text-center"> Developer Profiles </h1>{" "}
+              <p className="lead text-center"> Browse and connect with developers </p>{" "}
+              {profileItems}{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>{" "}
       </div>
     );
   }

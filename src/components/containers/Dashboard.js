@@ -30,7 +30,6 @@ class Dashboard extends Component {
     const { profile, loading } = this.props.profile;
 
     let dashboardContent;
-
     if (profile === null || loading === true) {
       dashboardContent = <Spinner />;
     } else {
@@ -42,14 +41,18 @@ class Dashboard extends Component {
               Welcome <Link to={`/profile/${profile.result.handle}`}>{user.name}</Link>
             </p>
             <DashboardActions />
-            <ShowExperience
-              delete={this.deleteExperience.bind(this)}
-              experience={profile.result.experience}
-            />
-            <ShowEducation
-              delete={this.deleteEducation.bind(this)}
-              education={profile.result.education}
-            />
+            {profile.result.experience.length === 0 ? null : (
+              <ShowExperience
+                delete={this.deleteExperience.bind(this)}
+                experience={profile.result.experience}
+              />
+            )}
+            {profile.result.education.length === 0 ? null : (
+              <ShowEducation
+                delete={this.deleteEducation.bind(this)}
+                education={profile.result.education}
+              />
+            )}
             <div style={{ marginBottom: "60px" }} />
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
               Delete My Account
