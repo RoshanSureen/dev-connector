@@ -100,6 +100,22 @@ export const addComment = (id, params) => dispatch => {
     });
 };
 
+export const deleteComment = (post_id, comment_id) => dispatch => {
+  APIManager.delete(`/api/post/comment/${post_id}/${comment_id}`)
+    .then(result => {
+      dispatch({
+        type: constants.GET_POST,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};
+
 export const removeLike = params => dispatch => {
   APIManager.post(`/api/post/unlike/${params}`, null)
     .then(result => dispatch(getPosts(null)))

@@ -8,8 +8,8 @@ import Experience from "./Experience";
 import Education from "./Education";
 import Profiles from "./profile/Profiles";
 import Profile from "./profile/Profile";
-import Posts from "./feed/Posts"
-import Post from "./feed/Post";
+import Posts from "./posts/Posts"
+import Post from "./post/Post";
 
 export {
   Navbar,

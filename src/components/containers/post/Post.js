@@ -6,6 +6,7 @@ import { Spinner } from "../../commons";
 import { getPostById } from "../../../actions/Post";
 import { PostItem } from "../../view";
 import Comment from "./Comment";
+import CommentFeed from "./CommentFeed";
 
 class Post extends Component {
   componentWillMount() {
@@ -20,8 +21,9 @@ class Post extends Component {
     } else {
       postContent = (
         <div>
-          <PostItem post={post.result} auth={this.props.auth} showActions={false} />
-          <Comment postId={post.result._id} auth={this.props.auth} />
+          <PostItem post={post.result} auth={this.props.auth} showActions={false} />{" "}
+          <Comment postId={post.result._id} auth={this.props.auth} />{" "}
+          <CommentFeed postId={post.result._id} comments={post.result.comments} />{" "}
         </div>
       );
     }
@@ -31,12 +33,12 @@ class Post extends Component {
           <div className="row">
             <div className="col-md-12">
               <Link to="/feed" className="btn btn-light mb-3">
-                Back To Feed
-              </Link>
-              {postContent}
-            </div>
-          </div>
-        </div>
+                Back To Feed{" "}
+              </Link>{" "}
+              {postContent}{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>{" "}
       </div>
     );
   }
