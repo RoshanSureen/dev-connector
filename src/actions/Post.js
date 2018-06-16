@@ -74,7 +74,7 @@ export const getPostById = params => dispatch => {
 };
 
 export const addLike = params => dispatch => {
-  APIManager.post(`/api/post/like/${params}`)
+  APIManager.post(`/api/post/like/${params}`, null)
     .then(result => dispatch(getPosts(null)))
     .catch(err => {
       dispatch({
@@ -84,8 +84,24 @@ export const addLike = params => dispatch => {
     });
 };
 
+export const addComment = (id, params) => dispatch => {
+  APIManager.post(`/api/post/comment/${id}`, params)
+    .then(result => {
+      dispatch({
+        type: constants.GET_POST,
+        data: result.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: constants.GET_ERRORS,
+        error: err.response.data.message
+      });
+    });
+};
+
 export const removeLike = params => dispatch => {
-  APIManager.post(`/api/post/unlike/${params}`)
+  APIManager.post(`/api/post/unlike/${params}`, null)
     .then(result => dispatch(getPosts(null)))
     .catch(err => {
       dispatch({

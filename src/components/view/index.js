@@ -17,6 +17,7 @@ import ProfileHeader from "./profile/ProfileHeader";
 import NotFound from "./NotFound";
 import PostForm from "./post/PostForm";
 import PostItem from "./post/PostItem";
+import CommentForm from "./post/CommentForm";
 
 export {
   Nav,
@@ -37,5 +38,6 @@ export {
   ProfileHeader,
   NotFound,
   PostForm,
-  PostItem
+  PostItem,
+  CommentForm
 };

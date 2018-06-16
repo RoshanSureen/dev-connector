@@ -38,16 +38,18 @@ class Posts extends Component {
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      postContent = <PostFeed posts={posts} />;
+      postContent = (
+        <div>
+          <PostForm submit={this.onSubmit.bind(this)} errors={this.state.errors} />{" "}
+          <PostFeed posts={posts} />
+        </div>
+      );
     }
     return (
       <div className="feed">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <PostForm submit={this.onSubmit.bind(this)} errors={this.state.errors} />{" "}
-              {postContent}
-            </div>{" "}
+            <div className="col-md-12">{postContent}</div>
           </div>{" "}
         </div>{" "}
       </div>

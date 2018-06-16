@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Spinner } from "../../commons";
 import { getPostById } from "../../../actions/Post";
 import { PostItem } from "../../view";
+import Comment from "./Comment";
 
 class Post extends Component {
   componentWillMount() {
@@ -14,12 +15,13 @@ class Post extends Component {
     const { post, loading } = this.props.post;
     let postContent;
 
-    if (post === null || loading || Object.keys(post).length === 0) {
+    if (post === undefined || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
       postContent = (
         <div>
           <PostItem post={post.result} auth={this.props.auth} showActions={false} />
+          <Comment postId={post.result._id} auth={this.props.auth} />
         </div>
       );
     }
